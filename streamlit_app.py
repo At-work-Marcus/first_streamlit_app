@@ -7,3 +7,6 @@ sl.header('Breakfast favorites')
 sl.text('🥛 smoothie')
 sl.text('🥙 pancakes')
 sl.text('🍞 hard boiled egg')
+
+# new header
+sl.header('🍌 Build your own smoothie  🍓')
