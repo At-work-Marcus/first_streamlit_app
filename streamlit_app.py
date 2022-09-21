@@ -28,6 +28,12 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 sl.dataframe(fruits_to_show)
 
 # lesson 9 Snowflake DABW
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon" + "kiwi")
 sl.header("Fruityvice Fruit Advice!")
-sl.text(fruityvice_response.json())
+sl.text(fruityvice_response.json()) # << just writes the data to the screen in json format
+
+# normalizing json data w/ pandas
+fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+# puts data in a better view in the app
+sl.dataframe(fruityvice_normalized)
+
