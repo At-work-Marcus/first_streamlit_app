@@ -30,7 +30,7 @@ sl.dataframe(fruits_to_show)
 # lesson 9 Snowflake DABW
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
 sl.header("Fruityvice Fruit Advice!")
-sl.text(fruityvice_response.json()) # << just writes the data to the screen in json format
+# sl.text(fruityvice_response.json()) # << just writes the data to the screen in json format
 
 # normalizing json data w/ pandas
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
