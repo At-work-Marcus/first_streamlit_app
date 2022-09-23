@@ -69,7 +69,6 @@ def get_fruit_load_list():
 if sl.button('Get fruit load list'):
   my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
   my_data_rows = get_fruit_load_list()
-  my_data_rows = my_cur.fetchall()
   sl.dataframe(my_data_rows)
 
 # add second text entry box
