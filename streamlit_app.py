@@ -43,5 +43,10 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # puts data in a better view in the app
 sl.dataframe(fruityvice_normalized)
 
-
-
+# lesson 12 DABW reading data from Snowflake into streamlit app
+my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetchone()
+sl.text("Hello from Snowflake:")
+sl.text(my_data_row)
