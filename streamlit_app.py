@@ -50,3 +50,6 @@ my_cur.execute("SELECT * from fruit_load_list")
 my_data_rows = my_cur.fetchall()
 sl.header("Fruit load list contains:")
 sl.dataframe(my_data_rows)
+
+# add second text entry box
+add_my_fruit = sl.text_input('What fruit would you like to add','jackfruit')
