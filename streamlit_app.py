@@ -31,18 +31,23 @@ sl.dataframe(fruits_to_show)
 
 # lesson 9 Snowflake DABW
 # creating variable for user input
-fruit_choice = sl.text_input('What fruit would you like information about?','Kiwi')
-sl.write('The user entered ', fruit_choice)
-
-# using that input to call the data for that fruit 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 sl.header("Fruityvice Fruit Advice!")
-# sl.text(fruityvice_response.json()) # << just writes the data to the screen in json format
-
-# normalizing requested json data w/ pandas
-fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-# puts data in a better view in the app
-sl.dataframe(fruityvice_normalized)
+try:
+  fruit_choice = sl.text_input('What fruit would you like information about?')
+  # sl.write('The user entered ', fruit_choice) # old line before try except
+  # using that input to call the data for that fruit 
+  if not fruit_choice:
+    sl.error('Please select a piece of fruit to get info about.')
+  else:
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    # sl.text(fruityvice_response.json()) # << just writes the data to the screen in json format
+    # normalizing requested json data w/ pandas
+    fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+    # puts data in a better view in the app
+    sl.dataframe(fruityvice_normalized)
+except URLError as e:
+  sl.error()
+  
 
 # stopping while troubleshooting 9/22/2022
 sl.stop()
