@@ -69,6 +69,7 @@ def get_fruit_load_list():
 if sl.button('Get fruit load list'):
   my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
   my_data_rows = get_fruit_load_list()
+  my_cnx.close()
   sl.dataframe(my_data_rows)
 
 
@@ -83,3 +84,4 @@ add_my_fruit = sl.text_input('What fruit would you like to add')
 if sl.button('Add a fruit to the list'):
   my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
   back_from_fxn = insert_row_snowflake(add_my_fruit)
+  my_cnx.close()
