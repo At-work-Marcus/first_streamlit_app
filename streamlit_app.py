@@ -2,6 +2,7 @@ import streamlit as sl
 import pandas as pd
 import requests
 import snowflake.connector
+from urllib.error import URLError
 
 # create title
 sl.title('My Parents Healthy Diner')
@@ -43,6 +44,9 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # puts data in a better view in the app
 sl.dataframe(fruityvice_normalized)
 
+# stopping while troubleshooting 9/22/2022
+sl.stop()
+
 # lesson 12 DABW reading data from Snowflake into streamlit app
 my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
 my_cur = my_cnx.cursor()
@@ -53,3 +57,4 @@ sl.dataframe(my_data_rows)
 
 # add second text entry box
 add_my_fruit = sl.text_input('What fruit would you like to add','jackfruit')
+sl.write('Thanks for adding ', add_my_fruit)
