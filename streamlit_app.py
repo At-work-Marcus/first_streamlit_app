@@ -66,6 +66,9 @@ def get_fruit_load_list():
     my_cur.execute("SELECT * from fruit_load_list")
     return my_cur.fetchall()
 
+# adding header
+sl.header("Get our fruit list - Add your own!")
+
 if sl.button('Get fruit load list'):
   my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
   my_data_rows = get_fruit_load_list()
