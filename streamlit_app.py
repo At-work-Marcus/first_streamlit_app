@@ -30,6 +30,13 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 sl.dataframe(fruits_to_show)
 
 # lesson 9 Snowflake DABW
+# creating fxn to call data from FDC
+def get_fruityvice_data(this_fruit_choice):
+  fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+  fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+  return fruityvice_normalized
+
+
 # creating variable for user input
 sl.header("Fruityvice Fruit Advice!")
 try:
@@ -39,12 +46,12 @@ try:
   if not fruit_choice:
     sl.error('Please select a piece of fruit to get info about.')
   else:
-    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    back_from_fxn = get_fruityvice_data(fruit_choice)
     # sl.text(fruityvice_response.json()) # << just writes the data to the screen in json format
     # normalizing requested json data w/ pandas
-    fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+    # fruityvice_normalized = pd.json_normalize(fruityvice_response.json()) # moved this to the get_fruityvice_data fxn
     # puts data in a better view in the app
-    sl.dataframe(fruityvice_normalized)
+    sl.dataframe(back_from_fxn)
 except URLError as e:
   sl.error()
   
