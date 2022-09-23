@@ -72,8 +72,6 @@ if sl.button('Get fruit load list'):
   sl.dataframe(my_data_rows)
 
 
-sl.write('Thanks for adding ', add_my_fruit)
-
 # adding fxn to add fruit to snowflake fruit_load_list
 def insert_row_snowflake(new_fruit):
   with my_cnx.cursor() as my_cur:
