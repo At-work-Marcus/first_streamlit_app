@@ -60,12 +60,17 @@ except URLError as e:
 sl.stop()
 
 # lesson 12 DABW reading data from Snowflake into streamlit app
-my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("SELECT * from fruit_load_list")
-my_data_rows = my_cur.fetchall()
-sl.header("Fruit load list contains:")
-sl.dataframe(my_data_rows)
+# fxn to call data from fruit_load_list
+def get_fruit_load_list():
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("SELECT * from fruit_load_list")
+    return my_cur.fetchall()
+
+if sl.button('Get fruit load list'):
+  my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
+  my_data_rows = get_fruit_load_list()
+  my_data_rows = my_cur.fetchall()
+  sl.dataframe(my_data_rows)
 
 # add second text entry box
 add_my_fruit = sl.text_input('What fruit would you like to add','jackfruit')
