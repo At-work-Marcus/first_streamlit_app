@@ -57,7 +57,7 @@ except URLError as e:
   
 
 # stopping while troubleshooting 9/22/2022
-sl.stop()
+#sl.stop()
 
 # lesson 12 DABW reading data from Snowflake into streamlit app
 # fxn to call data from fruit_load_list
